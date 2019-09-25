@@ -1,0 +1,26 @@
+<idea-plugin>
+    <id>com.zhuzichu.guidline.AndroidKotlinGuidline</id>
+    <name>AndroidKotlinGuidline</name>
+    <vendor email="zhuzichu520@gmail.com" url="http://www.zhuzichu.com">朱子楚</vendor>
+
+    <description>android kotlin代码规范</description>
+
+    <change-notes>
+        暂无改变
+    </change-notes>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <localInspection
+                displayName="检查类型转换"
+                groupName="AAA-Check"
+                groupKey="group.names.probable.bugs"
+                level="ERROR"
+                enabledByDefault="true"
+                implementationClass="com.zhuzichu.guidline.inspection.DataTypeConvertInspection"
+                groupBundle="messages.InspectionsBundle"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
