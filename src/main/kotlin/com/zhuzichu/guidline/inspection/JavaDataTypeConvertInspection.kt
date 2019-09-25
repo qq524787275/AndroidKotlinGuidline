@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElementVisitor
 import com.intellij.psi.PsiMethodCallExpression
 import com.zhuzichu.guidline.ext.logi
 
-class DataTypeConvertInspection : LocalInspectionTool() {
+class JavaDataTypeConvertInspection : LocalInspectionTool() {
 
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean): PsiElementVisitor {
         return object : JavaElementVisitor() {
@@ -23,6 +23,13 @@ class DataTypeConvertInspection : LocalInspectionTool() {
                     || text.contains("Long.parseLong")
                     || text.contains("Float.parseFloat")
                     || text.contains("Boolean.parseBoolean")
+                    || text.contains("Integer.valueOf")
+                    || text.contains("Double.valueOf")
+                    || text.contains("Short.valueOf")
+                    || text.contains("Byte.valueOf")
+                    || text.contains("Long.valueOf")
+                    || text.contains("Float.valueOf")
+                    || text.contains("Boolean.valueOf")
                 ) {
                     holder.registerProblem(expression.navigationElement, "小心有bug")
                 }

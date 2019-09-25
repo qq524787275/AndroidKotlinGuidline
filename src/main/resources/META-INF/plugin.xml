@@ -9,14 +9,35 @@
         暂无改变
     </change-notes>
 
+    <depends>org.jetbrains.kotlin</depends>
+
     <extensions defaultExtensionNs="com.intellij">
         <localInspection
-                displayName="检查类型转换"
+                displayName="java检查类型转换"
                 groupName="AAA-Check"
                 groupKey="group.names.probable.bugs"
                 level="ERROR"
                 enabledByDefault="true"
-                implementationClass="com.zhuzichu.guidline.inspection.DataTypeConvertInspection"
+                implementationClass="com.zhuzichu.guidline.inspection.JavaDataTypeConvertInspection"
+                groupBundle="messages.InspectionsBundle"/>
+
+        <localInspection
+                displayName="kotlin检查类型转换"
+                groupName="AAA-Check"
+                groupKey="group.names.probable.bugs"
+                level="ERROR"
+                language="kotlin"
+                enabledByDefault="true"
+                implementationClass="com.zhuzichu.guidline.inspection.KotlinDataTypeConvertInspection"
+                groupBundle="messages.InspectionsBundle"/>
+
+        <localInspection
+                displayName="资源id命名检查"
+                groupName="AAA-Check"
+                groupKey="group.names.probable.bugs"
+                level="ERROR"
+                enabledByDefault="true"
+                implementationClass="com.zhuzichu.guidline.inspection.ResourceIdInspection"
                 groupBundle="messages.InspectionsBundle"/>
     </extensions>
 
