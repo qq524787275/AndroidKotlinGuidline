@@ -1,11 +1,11 @@
-import com.zhuzichu.guidline.ext.isTuoFeng
+import com.zhuzichu.guidline.ext.isHump
 import org.junit.Test
 
 class RegTest {
 
     @Test
-    fun testTuoFeng() {
+    fun testHump() {
         val a = "titleAas"
-        println( a.isTuoFeng())
+        println( a.isHump())
     }
 }

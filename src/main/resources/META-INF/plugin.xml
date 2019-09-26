@@ -13,8 +13,8 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <localInspection
-                displayName="java检查类型转换"
-                groupName="AAA-Check"
+                displayName="Java检查类型转换"
+                groupName="Android Guidline"
                 groupKey="group.names.probable.bugs"
                 level="ERROR"
                 enabledByDefault="true"
@@ -22,8 +22,8 @@
                 groupBundle="messages.InspectionsBundle"/>
 
         <localInspection
-                displayName="kotlin检查类型转换"
-                groupName="AAA-Check"
+                displayName="Kotlin检查类型转换"
+                groupName="Android Guidline"
                 groupKey="group.names.probable.bugs"
                 level="ERROR"
                 language="kotlin"
@@ -33,15 +33,21 @@
 
         <localInspection
                 displayName="资源id命名检查"
-                groupName="AAA-Check"
+                groupName="Android Guidline"
                 groupKey="group.names.probable.bugs"
                 level="ERROR"
                 enabledByDefault="true"
-                implementationClass="com.zhuzichu.guidline.inspection.ResourceIdInspection"
+                implementationClass="com.zhuzichu.guidline.inspection.ResourceIdCheckInspection"
                 groupBundle="messages.InspectionsBundle"/>
     </extensions>
 
+    <application-components>
+    </application-components>
+
+    <project-components>
+    </project-components>
+
     <actions>
-        <!-- Add your actions here -->
     </actions>
+
 </idea-plugin>
