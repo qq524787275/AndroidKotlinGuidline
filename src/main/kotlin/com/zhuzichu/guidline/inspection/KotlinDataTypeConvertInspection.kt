@@ -24,7 +24,7 @@ class KotlinDataTypeConvertInspection : AbstractKotlinInspection() {
         return object : KtVisitorVoid() {
             override fun visitCallExpression(expression: KtCallExpression) {
                 super.visitCallExpression(expression)
-                val text = expression.name
+                val text = expression.text
                 if (text.isNullOrBlank())
                     return
                 text.logi()

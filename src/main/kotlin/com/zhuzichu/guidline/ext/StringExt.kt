@@ -15,3 +15,17 @@ fun String.hump2Underline(): String {
     matcher.appendTail(sb)
     return sb.toString()
 }
+
+/**
+ * 判断字符是否是驼峰
+ */
+fun String?.isHump(): Boolean {
+    if (this.isNullOrBlank())
+        return false
+    for (index in 0 until this.length) {
+        if (this[index] in 'A'..'Z') {
+            return true
+        }
+    }
+    return false
+}

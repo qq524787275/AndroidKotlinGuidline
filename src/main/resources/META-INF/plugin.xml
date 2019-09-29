@@ -39,6 +39,24 @@
                 enabledByDefault="true"
                 implementationClass="com.zhuzichu.guidline.inspection.ResourceIdCheckInspection"
                 groupBundle="messages.InspectionsBundle"/>
+
+        <localInspection
+                displayName="自动生成Contract"
+                groupName="Android Guidline"
+                enabledByDefault="true"
+                groupBundle="messages.InspectionsBundle"
+                implementationClass="com.zhuzichu.guidline.inspection.KotlinContractAutoInspecton"
+                language="kotlin"
+                level="WARNING"/>
+
+        <localInspection
+                displayName="自动生成Activity"
+                groupName="Android Guidline"
+                enabledByDefault="true"
+                groupBundle="messages.InspectionsBundle"
+                implementationClass="com.zhuzichu.guidline.inspection.KoltinActivityAutoInspection"
+                language="kotlin"
+                level="WARNING"/>
     </extensions>
 
     <application-components>

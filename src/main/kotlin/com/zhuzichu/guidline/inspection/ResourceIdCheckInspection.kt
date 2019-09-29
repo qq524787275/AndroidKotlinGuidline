@@ -12,10 +12,11 @@ import com.zhuzichu.guidline.ext.hump2Underline
 import com.zhuzichu.guidline.ext.isHump
 import org.jetbrains.kotlin.idea.util.application.runWriteAction
 
+
 /**
- * desc: xml中id驼峰检测  <br/>
+ * desc: xml 中 id驼峰检查  <br/>
  * author: Coffee <br/>
- * time: 2019-09-25 11:25 <br/>
+ * time: 2019-09-25 14:15 <br/>
  * since v1.0 <br/>
  */
 class ResourceIdCheckInspection : LocalInspectionTool() {
@@ -24,24 +25,34 @@ class ResourceIdCheckInspection : LocalInspectionTool() {
             override fun visitXmlAttribute(attribute: XmlAttribute?) {
                 super.visitXmlAttribute(attribute)
                 attribute ?: return
-                if (attribute.localName == "id") {
-                    attribute.value?.let {
-                        val idValue = it.split("/")[1]
-                        if (idValue.isHump()) {
-                            holder.registerProblem(
-                                attribute,
-                                "请使用下划线_替代驼峰",
-                                GenerateMethod(attribute, idValue)
-                            )
-                        } else {
-                        }
-                    }
-                }
+                //标签属性名不是id
+                if (attribute.localName != "id")
+                    return
+
+                val value = attribute.value
+
+                //标签属性值不能为空
+                if (value.isNullOrBlank())
+                    return
+
+                // value 值 @+id/navigation_layout
+                val idValue = value.split("/")[1]
+
+                //不是驼峰
+                if (!idValue.isHump())
+                    return
+
+                //是驼峰 弹出警告
+                holder.registerProblem(
+                    attribute,
+                    "请使用下划线_替代驼峰",
+                    GenerateMethod(attribute, idValue)
+                )
             }
         }
     }
 
-    class GenerateMethod(private val attribute: XmlAttribute, private val idValue: String) : LocalQuickFix {
+    inner class GenerateMethod(private val attribute: XmlAttribute, private val idValue: String) : LocalQuickFix {
         override fun getName(): String = "驼峰转下划线"
 
         override fun getFamilyName(): String = attribute.localName

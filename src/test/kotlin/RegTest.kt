@@ -5,7 +5,7 @@ class RegTest {
 
     @Test
     fun testHump() {
-        val a = "titleAas"
+        val a = "title"
         println( a.isHump())
     }
 }
