@@ -50,11 +50,29 @@
                 level="WARNING"/>
 
         <localInspection
-                displayName="自动生成Activity"
+                displayName="自动生成Activity模板"
                 groupName="Android Guidline"
                 enabledByDefault="true"
                 groupBundle="messages.InspectionsBundle"
                 implementationClass="com.zhuzichu.guidline.inspection.KoltinActivityAutoInspection"
+                language="kotlin"
+                level="WARNING"/>
+
+        <localInspection
+                displayName="自动生成Fragment模板"
+                groupName="Android Guidline"
+                enabledByDefault="true"
+                groupBundle="messages.InspectionsBundle"
+                implementationClass="com.zhuzichu.guidline.inspection.KotlinFragmentAutoInspection"
+                language="kotlin"
+                level="WARNING"/>
+
+        <localInspection
+                displayName="自动生成FragmentDialog模板"
+                groupName="Android Guidline"
+                enabledByDefault="true"
+                groupBundle="messages.InspectionsBundle"
+                implementationClass="com.zhuzichu.guidline.inspection.KotlinFragmentDialogAutoInspection"
                 language="kotlin"
                 level="WARNING"/>
     </extensions>

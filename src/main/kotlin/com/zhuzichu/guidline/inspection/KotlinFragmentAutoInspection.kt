@@ -12,16 +12,15 @@ import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtPsiFactory
 import org.jetbrains.kotlin.psi.KtVisitorVoid
 
-
 /**
  * desc: 生成ActivityXXX 模板  <br/>
  * author: Coffee <br/>
- * time: 2019-09-29 11:07 <br/>
+ * time: 2019-09-30 9:12 <br/>
  * since v1.0 <br/>
  */
-class KoltinActivityAutoInspection : AbstractKotlinInspection(), IAutoCode {
+class KotlinFragmentAutoInspection : AbstractKotlinInspection(), IAutoCode {
 
-    override fun getType(): String = IAutoCode.TYPE_ACTIVITY
+    override fun getType(): String = IAutoCode.TYPE_FRAGMENT
 
     private val autoCodeDelegate by lazy { AutoCodeDelegate(getType()) }
 
@@ -32,10 +31,11 @@ class KoltinActivityAutoInspection : AbstractKotlinInspection(), IAutoCode {
     ): PsiElementVisitor {
         return object : KtVisitorVoid() {
             override fun visitClass(klass: KtClass) {
+                super.visitClass(klass)
                 if (autoCodeDelegate.checkClass(klass)) {
                     holder.registerProblem(
                         klass.nameIdentifier as PsiElement,
-                        "请继承 ActivityAnalyticsBase",
+                        "请继承 FragmentAnalyticsBase",
                         GenerateMethod(klass)
                     )
                 }
@@ -43,11 +43,12 @@ class KoltinActivityAutoInspection : AbstractKotlinInspection(), IAutoCode {
         }
     }
 
+
     inner class GenerateMethod(private val klass: KtClass) : LocalQuickFix {
 
         private val className = klass.name!!
 
-        override fun getName(): String = "生成 Activity 模板"
+        override fun getName(): String = "生成 Fragment 模板"
 
         override fun getFamilyName(): String = className
 
@@ -56,4 +57,5 @@ class KoltinActivityAutoInspection : AbstractKotlinInspection(), IAutoCode {
             autoCodeDelegate.createCode(factory, klass, className, getType())
         }
     }
+
 }
