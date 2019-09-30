@@ -1,11 +1,13 @@
 package com.zhuzichu.guidline.inspection
 
+import com.intellij.psi.PsiElement
 import com.zhuzichu.guidline.ext.hump2Underline
 import org.jetbrains.kotlin.idea.core.getOrCreateCompanionObject
 import org.jetbrains.kotlin.idea.util.application.runWriteAction
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtPsiFactory
 import org.jetbrains.kotlin.psi.getOrCreateBody
+import org.jetbrains.kotlin.resolve.ImportPath
 
 class AutoCodeDelegate(private val type: String) {
 
@@ -28,6 +30,7 @@ class AutoCodeDelegate(private val type: String) {
         type: String
     ) {
         val word = className.substring(type.length)
+
 
         val route = factory.createAnnotationEntry(
             """
@@ -95,6 +98,32 @@ class AutoCodeDelegate(private val type: String) {
         }
 
         runWriteAction {
+
+            klass.addBefore(
+                getImportText("com.tajer.android.base.base.entity.model.params.DefaultViewParamsModel",factory),
+                klass
+            )
+
+            klass.addBefore(
+                getImportText("com.tajer.android.common.consts.ViewPathConst",factory),
+                klass
+            )
+
+            klass.addBefore(
+                getImportText("com.tajer.android.common.consts.ViewCodeConst",factory),
+                klass
+            )
+
+            klass.addBefore(
+                getImportText("com.alibaba.android.arouter.facade.annotation.Route",factory),
+                klass
+            )
+
+            klass.addBefore(
+                getImportText("com.jollycorp.android.libs.view.code.annotation.ViewCode",factory),
+                klass
+            )
+
             klass.addAnnotationEntry(route)
 
             klass.addSuperTypeListEntry(superType)
@@ -122,6 +151,18 @@ class AutoCodeDelegate(private val type: String) {
             klass.getOrCreateBody()
                 .addAfter(getTagGAScreenName, klass.getOrCreateBody().children.last())
 
+        }
+    }
+
+    private fun getImportText(text: String, factory: KtPsiFactory): PsiElement {
+        return factory.createImportDirective(
+            ImportPath.fromString(
+                """
+                |$text
+            """.trimMargin()
+            )
+        ).apply {
+            add(factory.createNewLine())
         }
     }
 }
