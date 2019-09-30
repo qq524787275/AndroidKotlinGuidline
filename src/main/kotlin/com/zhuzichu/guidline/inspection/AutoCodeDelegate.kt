@@ -1,6 +1,5 @@
 package com.zhuzichu.guidline.inspection
 
-import com.intellij.openapi.project.Project
 import com.zhuzichu.guidline.ext.hump2Underline
 import org.jetbrains.kotlin.idea.core.getOrCreateCompanionObject
 import org.jetbrains.kotlin.idea.util.application.runWriteAction
